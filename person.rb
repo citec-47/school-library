@@ -22,5 +22,5 @@ class Person
   end
 end
 
-person1 = Person.new(23, 'peter')
+person1 = Person.new(23, 'maurice')
 person1.parent_permission
