@@ -1,12 +1,9 @@
-require_relative 'nameable'
-# base decorator is implemented the store the wrapped method and
-# means the initialize or change them
-class Decorator < Nameable
-  attr_accessor :nameable
+require './nameable'
 
+class Decorator < Nameable
   def initialize(nameable)
-    @nameable = nameable
     super()
+    @nameable = nameable
   end
 
   def correct_name
