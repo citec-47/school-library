@@ -1,19 +1,24 @@
-require_relative './person'
+require './person'
 
 class Student < Person
-  attr_reader :classroom
+  attr_accessor :classroom
 
-  def initialize(classroom, age, name = 'Unknow', parent_permission: true)
-    super(age, name, parent_permission: parent_permission)
-    @classroom = classroom
+  def initialize(age, name, parent_permission)
+    @age = age
+    @name = name
+    @parent_permission = parent_permission
+    @id = Random.rand(1..1000)
+    super(age, name, parent_permission)
   end
 
   def play_hooky
-    '¯(ツ)/¯'
+    '¯\(ツ)/¯'
   end
 
-  def manage_classroom(classroom)
+  # rubocop:disable Lint/DuplicateMethods
+  def classroom=(classroom)
     @classroom = classroom
-    classroom.student.push(self) unless classroom.student.include?(self)
+    classroom.number_of_students.push(self) unless classroom.number_of_students.include?(self)
   end
+  # rubocop:enable Lint/DuplicateMethods
 end
