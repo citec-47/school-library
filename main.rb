@@ -1,56 +1,49 @@
 require_relative 'app'
+def others(option); end
 
-def ask_user
-  puts 'Select what you want to do'
-  puts "
-    1 List all books.
-    2 List all people.
-    3 Create a person.
-    4 Create a book.
-    5 Create a rental.
-    6 List all rentals for a given person id.
-    7 Exit."
-  gets.chomp.to_i
-end
-
-def loop_books(my_app)
-  my_app.books.each_with_index do |book, index|
-    puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}"
-  end
-end
-
-def loop_people(my_app)
-  my_app.people.each_with_index do |person, index|
-    type = person.is_a?(Student) ? 'Student' : 'Teacher'
-    puts "#{index}) [#{type}] Name: #{person.name} ID: #{person.id} Age: #{person.age}"
-  end
-end
-
-def process_choice(choice, my_app)
-  case choice
-  when 1
-    loop_books(my_app)
-  when 2
-    loop_people(my_app)
-  when 3
-    my_app.create_person
-  when 4
-    my_app.create_book
-  when 5
-    my_app.create_rental
-  when 6
-    puts my_app.view_rental
-  end
-end
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
 def main
-  my_app = App.new
-  loop do
-    choice = ask_user
-    break if choice == 7
-
-    process_choice(choice, my_app)
+  app = App.new
+  books = []
+  people = []
+  rentals = []
+  puts 'Welcome to School Library App!'
+  option = nil
+  while option != '7'
+    puts 'Please choose an option by entering a number:'
+    puts '1 - List all books'
+    puts '2 - List all people'
+    puts '3 - Create a person'
+    puts '4 - Create a book'
+    puts '5 - Create a rental'
+    puts '6 - List all rentals for a given person id'
+    puts '7 - Exit'
+    option = gets.chomp
+    case option
+    when '1'
+      puts 'No books yet' if books.empty?
+      app.list_all_books(books)
+    when '2'
+      if people.empty?
+        puts 'No people yet'
+        next
+      end
+      app.list_all_people(people)
+    when '3'
+      people.push(app.create_person)
+    when '4'
+      books.push(app.create_book)
+    when '5'
+      rentals.push(app.create_rental(books, people))
+    when '6'
+      app.list_rentals
+    end
+    puts
   end
+  puts 'Thank you for using this app!'
 end
+
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
 main
