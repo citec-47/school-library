@@ -154,14 +154,14 @@ class App
     when '7'
       exit_app
     else
-      puts 'Choose an existing option!'
+      puts 'Choose an existing option!..'
     end
-
     display_options
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def initial
-    puts 'Welcome to the School Library App!'
+    puts 'Welcome to School Library App!'
     display_options
   end
 end
