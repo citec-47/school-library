@@ -156,6 +156,7 @@ class App
     else
       puts 'Choose an existing option!'
     end
+
     display_options
   end
 
