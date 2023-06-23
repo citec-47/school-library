@@ -1,13 +1,15 @@
 require_relative 'book'
 require_relative 'teacher'
 require_relative 'student'
-require_relative 'rentals'
+require_relative 'rental'
 
 class App
   def initialize
     @books = []
+    # @teacher = []
+    # @student = []
     @people = []
-    @rentals = []
+    @rental = []
   end
 
   def create_person
@@ -22,7 +24,7 @@ class App
       puts 'Invalid option'
       create_person
     end
-    puts 'Person created successfully'
+    puts 'Person created succesfully'
   end
 
   def create_student
@@ -38,7 +40,7 @@ class App
                    when 'n'
                      false
                    else
-                     puts 'It\'s a yes or no type thing! C\'mon now!'
+                     puts 'It\'s a yes or no type thing!. c\'mon now! '
                    end
     student = Student.new(student_age, student_name, is_permitted)
     @people.push(student)
@@ -57,9 +59,9 @@ class App
 
   def list_people
     if @people.empty?
-      puts 'No people to display'
+      puts 'Must a person first'
     else
-      @people.each { |person| puts "#{person.class}: Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+      @people.each { |person| puts "#{[person.class]} Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
   end
 
@@ -75,46 +77,50 @@ class App
 
   def list_books
     if @books.empty?
-      puts 'No books to display'
+      puts 'There is no book yet'
     else
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
   end
 
   def create_rental
-    if @books.empty? || @people.empty?
-      puts 'There must be at least one book and one person for a rental to take place!'
-    else
+    if @books.size.positive? && @people.size.positive?
       puts 'Select a book from the following list by number'
       @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}" }
-      book_id = gets.chomp.to_i
-      puts 'Select a person from the following list by number (not ID)'
+      id = gets.chomp.to_i
+      puts 'Select a person from the following list by number (not id)'
       @people.each_with_index do |person, index|
-        puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, #{person.age}"
       end
       person_id = gets.chomp.to_i
       puts 'Enter the date in this format yy/mm/dd: '
       date = gets.chomp
-      rental = Rental.new(@books[book_id], @people[person_id], date)
-      @rentals.push(rental)
-      puts 'Rental created successfully'
+      person_rental = Rental.new(@books[id], @people[person_id], date)
+      @rental.push(person_rental)
+      puts 'Rental creared successfully'
+    else
+      puts 'There must be a person and some book for a rental to take place!'
     end
   end
 
   def rental_list
-    if @rentals.empty?
-      puts 'No rentals available'
+    if @rental.empty?
+      puts 'Rentals doesn\'t exist yet! come back later'
     else
-      puts 'Enter the person ID to get their rentals: '
+      print 'Enter the person_id you wanna get the rental for: '
       person_id = gets.chomp.to_i
-      person_rentals = @rentals.select { |rental| rental.person.id == person_id }
-      if person_rentals.empty?
-        puts 'The selected person has no rentals'
-      else
-        person_rentals.each do |rental|
-          puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
-        end
+      list_rental(person_id)
+    end
+  end
+
+  def list_rental(person_id)
+    person_rentals = @rental.select { |rental| rental.person.id == person_id }
+    if person_rentals.length.positive?
+      person_rentals.each do |rental|
+        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
       end
+    else
+      puts 'The selected person has no rentals'
     end
   end
 
@@ -129,14 +135,16 @@ class App
     puts '7. Exit app'
 
     option_id = gets.chomp
+    puts option_id
     run_app(option_id)
   end
 
   def exit_app
-    puts 'Thank you for using this app!'
+    puts 'Thank you for using this app! '
     exit
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def run_app(option_id)
     case option_id
     when '1'
@@ -165,6 +173,3 @@ class App
     display_options
   end
 end
-
-app = App.new
-app.initial
