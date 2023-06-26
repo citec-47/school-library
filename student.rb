@@ -15,10 +15,8 @@ class Student < Person
     '¯\(ツ)/¯'
   end
 
-  # rubocop:disable Lint/DuplicateMethods
   def classroom=(classroom)
     @classroom = classroom
     classroom.number_of_students.push(self) unless classroom.number_of_students.include?(self)
   end
-  # rubocop:enable Lint/DuplicateMethods
 end
