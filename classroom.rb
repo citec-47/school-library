@@ -1,14 +1,15 @@
 class Classroom
   attr_accessor :label
-  attr_reader :number_of_students
+  attr_reader :student
 
   def initialize(label)
     @label = label
-    @number_of_students = []
+    @student = []
   end
 
+  # add student manage the relationship between the classroom and student
   def add_student(student)
-    @number_of_students.push(student)
-    student.classroom = self
+    @student.push(student)
+    student.manage_classroom = self
   end
 end
