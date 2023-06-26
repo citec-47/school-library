@@ -2,8 +2,8 @@ require_relative 'book'
 require_relative 'teacher'
 require_relative 'student'
 require_relative 'rental'
-require_relative 'display'
-require_relative 'create_services'
+require_relative 'show'
+require_relative 'services'
 
 class App
   def initialize
@@ -14,7 +14,7 @@ class App
 
   def list_people
     if @people.empty?
-      puts 'Must a person first'
+      puts 'Please my friend you have to create a person by choosing option 3'
     else
       @people.each { |person| puts "#{[person.class]} Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
@@ -22,7 +22,7 @@ class App
 
   def list_books
     if @books.empty?
-      puts 'There is no book yet'
+      puts 'my friend you have to create a book by choosing option 4'
     else
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
@@ -30,7 +30,7 @@ class App
 
   def rental_list
     if @rental.empty?
-      puts 'Rentals doesn\'t exist yet! come back later'
+      puts 'None of the books has been rented yet! come back later'
     else
       print 'Enter the person_id you wanna get the rental for: '
       person_id = gets.chomp.to_i
@@ -50,7 +50,7 @@ class App
   end
 
   def exit_app
-    puts 'Thank you for using this app! '
+    puts 'Thank you for using this app we love you! '
     exit
   end
 
