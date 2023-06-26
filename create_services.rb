@@ -1,3 +1,4 @@
+# rubocop:disable Layout/EndOfLine
 def create_person
   print 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
   option = gets.chomp
@@ -12,8 +13,8 @@ def create_person
   end
   puts 'Person created succesfully'
 end
-
 # rubocop:enable Layout/EndOfLine
+
 def create_student
   print 'Age: '
   student_age = gets.chomp
@@ -68,8 +69,8 @@ def create_rental
     date = gets.chomp
     person_rental = Rental.new(@books[id], @people[person_id], date)
     @rental.push(person_rental)
-    puts 'Rental created successfully'
+    puts 'Rental creared successfully'
   else
-    puts 'Hello my friend there must be a person and atleast one book for a rental to take place OK!'
+    puts 'There must be a person and some book for a rental to take place!'
   end
 end
