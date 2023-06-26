@@ -22,7 +22,7 @@ class App
 
   def list_books
     if @books.empty?
-      puts 'There is no book yet please you must create books before taking the option 2'
+      puts 'There is no book yet please you must create books before taking the option 4'
     else
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
@@ -32,7 +32,7 @@ class App
     if @rental.empty?
       puts 'No rentals for now! Please come back later'
     else
-      print 'Enter the person_id you want to get the rental for: '
+      print 'Enter the person_id you wanna get the rental for: '
       person_id = gets.chomp.to_i
       list_rental(person_id)
     end
@@ -50,7 +50,7 @@ class App
   end
 
   def exit_app
-    puts 'Thank you for using this app! We love you and expecting to see you again 😍🙌😍 '
+    puts 'Thank you for using this app! We love you and expecting to see you again 😍🙌😍'
     exit
   end
 
