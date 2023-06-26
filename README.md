@@ -97,9 +97,15 @@ Example command:
 ## 👥 Authors <a name="ndonyi"></a>
 **MAURICE NDONYI**
 
-- GitHub: [@citec-47](https://github.com/citec-47))
+- GitHub: [@citec-47](https://github.com/citec-47)
 - Twitter: [@ndonyi4](https://twitter.com/Ndonyi4)
 - LinkedIn: [@ndyoni](https://www.linkedin.com/in/ndonyi-maurice-b5b49b22b/)
+
+**MUHAMMAD ZUNAIR KHAN**
+
+- GitHub: [@zunairkhan811](https://github.com/zunairkhan811)
+- Twitter: [@zunairkhan811](https://twitter.com/zunairkhan811)
+- LinkedIn: [@mzunairkhan](https://www.linkedin.com/in/mzunairkhan/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
