@@ -94,7 +94,7 @@ Example command:
 
 <!-- AUTHORS -->
 
-## 👥 Authors <a name="ndonyi"></a>
+## 👥 Authors <a name="ndo"></a>
 **MAURICE NDONYI**
 
 - GitHub: [@citec-47](https://github.com/citec-47))
