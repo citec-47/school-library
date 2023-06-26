@@ -156,8 +156,9 @@ class App
     when '7'
       exit_app
     else
-      puts 'Choose an existing option!..'
+      puts 'Choose an existing option!'
     end
+
     display_options
   end
 
